@@ -5,48 +5,55 @@
 {% endblock %}
 
 {% block 'title' %}pagina de catalogo {% endblock %}
+</head>
 
 {% block 'body' %}
-<h1></h1>
- <style>
-    .image-container {
-      position: relative;
-      display: inline-block;
-    }
+  <h1 style="font-size: 20px;display: flex;justify-content: space-around;">Nosso site foi criado para ser o seu parceiro de treino e alimentação. Aqui você encontra tudo o que precisa para evoluir com saúde e organização: <br>
 
-    .image-container img {
-      display: block;
-      width: 400px;
-      height: auto;
-    }
-
-    .image-container button {
-      position: absolute;
-      padding: 55px 40px;
-      background-color: rgb(255, 255, 255);
-      color: #000000;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .image-container button:hover {
-      background-color: rgba(0, 123, 255, 1);
-    }
-  </style>
-</head>
-<body>
+    Calculadora TMB: monte sua dieta personalizada de acordo com seus objetivos.<br>
+    
+    Exercícios por músculo: escolha a parte do corpo que deseja treinar e descubra os melhores exercícios para cada grupo muscular.<br>
+    
+    Divisão de treinos (A/B/C): organize sua rotina de treinos de forma prática e eficiente.<br>
+    
+    Anotações de cargas: acompanhe sua evolução registrando os pesos utilizados em cada treino.<br>
+    
+    Tudo em um só lugar, com foco em praticidade, desempenho e resultados.</h1>
   <div class="image-container" style="display: flex;justify-content: space-around;">
-    <img src="./static/img/caraacad.webp" alt="Imagem Exemplo" style="width: 70%;height: 700px;">
+    <img src="./static/img/inicial.png" alt="Imagem Exemplo" style="width: 58%">
 
-    <button class="top-left" style="left: 54%;right: 32%;bottom: 57%;top: 18%;" onclick="alert('Clicou Top Left!')"><i class="bi bi-chevron-double-up"></i><br>cargas</button>
-    <button class="top-right" style="left: 69%;right: 17%;bottom: 57%;top: 18%;" onclick="alert('Clicou Top Right!')"><i class="bi bi-calendar-date"></i><br>cronogramas</button>
-    <button class="bottom-left" style="left: 69%;right: 17%;bottom: 29%;top: 47%;" onclick="alert('Clicou Bottom Left!')"><i class="bi bi-fork-knife"></i><br>dietas</button>
-    <button class="bottom-right" style="left: 54%;right: 32%;bottom: 29%;top: 47%;"  onclick="alert('Clicou Bottom Right!')"><i class="bi bi-sort-numeric-up"></i><br>divisoes de treino</button>
+    <button class="top-left" style="left: 49%;right: 38%;bottom: 70%;top: 5%;" onclick="alert('Clicou Top Left!')"><i class="bi bi-chevron-double-up"></i><br>cargas</button>
+    <button class="top-right" style="left: 63%;right: 23%;bottom: 70%;top: 5%;" onclick="alert('Clicou Top Right!')"><i class="bi bi-calendar-date"></i><br>cronogramas</button>
+    <button class="bottom-left" style="left: 49%;right: 38%;bottom: 41%;top: 33%;" onclick="alert('Clicou Bottom Left!')"><i class="bi bi-fork-knife"></i><br>dietas</button>
+    <button class="bottom-right" style="left: 63%;right: 23%;bottom: 41%;top: 33%;"  onclick="alert('Clicou Bottom Right!')"><i class="bi bi-sort-numeric-up"></i><br>divisoes de treino</button>
   </div>
 <br>
-<div style="display: flex;justify-content: space-around;">
-<img src="./static/img/gama-4.jpg" alt="imagem-academia" style="width: 70%;height: 700px;">
+<div class="card-group">
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
 </div>
+
 
 {% endblock %}
