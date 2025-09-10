@@ -6,5 +6,7 @@ urlpatterns = [
     path('proxpag/',views.contato,name='proxpag'),
     path('dieta/', views.dieta, name='dieta'),
     path('cronograma/', views.cronograma, name='cronograma'),
+    path('musculos/', views.musculos, name='musculos'),
+    path('cargas/', views.cargas, name='cargas'),
     # path('pessoas/', views.lista_pessoas, name='lista_pessoas'),
 ]

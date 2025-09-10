@@ -15,6 +15,12 @@ def dieta(request):
 
 def cronograma(request):
     return render(request, 'cronograma.html')
+
+def musculos(request):
+    return render(request, 'musculos.html')
+
+def cargas(request):
+    return render(request, 'cargas.html')
 # def lista_pessoas(request):
 #     pessoas = Pessoa.objects.all().order_by('nome')
 #     return render(request, 'pessoas.html', {'pessoas': pessoas})

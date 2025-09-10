@@ -6,6 +6,37 @@ body{
     justify-content: center;
     color: red;
 }
+.categorias{
+  display: flex;
+}
+.categorias2{
+  display: flex;
+}
+.categorias2 .tds{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.categorias p{
+  font-size: x-large;
+}
+.categorias img:hover{
+  transform: scale(1.05);
+  
+}
+.categorias .tds{
+  display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.princ{
+  display: flex;
+    align-items: center;
+    flex-direction: column
+}
+.princ h1{
+  font-size: 20px;display: flex;justify-content: space-around;
+}
 .descricao-dieta{
     font-size: larger;
     display: flex;
