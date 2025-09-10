@@ -9,10 +9,14 @@ body{
 .categorias{
   display: flex;
 }
-.categorias2{
+.categoria{
   display: flex;
 }
-.categorias2 .tds{
+.categoria img:hover{
+  transform: scale(1.03);
+  
+}
+.categoria .td{
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -21,7 +25,7 @@ body{
   font-size: x-large;
 }
 .categorias img:hover{
-  transform: scale(1.05);
+  transform: scale(1.03);
   
 }
 .categorias .tds{
