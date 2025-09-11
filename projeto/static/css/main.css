@@ -136,3 +136,11 @@ body{
   .image-container button:hover {
     background-color: rgba(0, 123, 255, 1);
   }
+  .funcionalidades{
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+  }
+.funcionalidades h1{
+    font-size: xxx-large;
+}
