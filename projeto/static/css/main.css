@@ -16,7 +16,7 @@ body{
   transform: scale(1.03);
   
 }
-.categoria .td{
+.categoria .tds{
   display: flex;
   align-items: center;
   flex-direction: column;

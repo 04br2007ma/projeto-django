@@ -7,12 +7,13 @@
 {% block 'title' %}pagina de catalogo {% endblock %}
 
 {% block 'body' %}
+<!-- <img src="{% static 'img/ChatGPT Image 11 de set. de 2025, 20_02_22.png' %}" alt=""> -->
 <div class="funcionalidades">
  <h1>calcule sua dieta e<br> personalize seu treino</h1>
 </div>
  <br>
 <div class="categorias">
-  <div class="tds">
+  <div class="tds" style="padding-left: 30px;">
     <p>🥗 Calcule e Monte sua dieta personalizada <br>
       </p>
     <a href="{% url 'dieta' %}"><img style="width: 95%;" src="{% static 'img/dieta.png' %}" alt="foto-de-dieta"></a>
@@ -33,7 +34,7 @@
 </div>
 <br>  
 <div class="categoria">
-  <div class="td">
+  <div class="tds" style="padding-left: 30px;">
     <p>💪 Treine o músculo certo com os melhores exercícios
     </p>
     <a href="{% url 'cargas' %}"><img style="width: 95%;" src="{% static 'img/ChatGPT Image 10 de set. de 2025, 20_17_01.png' %}" alt="foto-treinando"></a>
@@ -49,8 +50,26 @@
     <a href="{% url 'cronograma' %}"><img style="width: 95%;" src="{% static 'img/ChatGPT Image 10 de set. de 2025, 20_18_02.png' %}" alt="foto-treinando"></a>
   </div>
 </div>
+<br>
+<br>
 
-{% endblock %}🌐 Descrição detalhada para o seu site de academia e dieta
+<footer style="background: linear-gradient(135deg, #212529, #292b2e); color: white; padding: 40px 20px; text-align: center; font-family: Arial, sans-serif;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h3 style="margin-bottom: 10px;">trevigno</h3>
+    <p style="margin-bottom: 20px;">Calcule sua dieta, acompanhe seus cronogramas e alcance seus objetivos de forma saudável!</p>
+    
+    <div style="margin-bottom: 20px;">
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Início</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Cronogramas</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Cargas</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Dietas</a>
+      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Meu Perfil</a>
+    </div>
+    
+    <p style="font-size: 14px;">&copy; 2025 trevigno. Todos os direitos reservados.</p>
+  </div>
+</footer>
+<!-- 🌐 Descrição detalhada para o seu site de academia e dieta
 
 Nosso site é a ferramenta ideal para quem busca treinar com inteligência e se alimentar de forma estratégica. Reunimos em um único lugar tudo o que você precisa para alcançar seus objetivos de saúde, estética e performance.
 
@@ -59,9 +78,6 @@ Nosso site é a ferramenta ideal para quem busca treinar com inteligência e se 
 
 🔥 Tudo em um só lugar: alimentação, treinos, organização e acompanhamento.
 O objetivo é simples: te ajudar a evoluir com foco, disciplina e resultados reais.
-
-
-{% endblock %}
 
 Escolha a parte do corpo que deseja treinar e receba uma lista com os exercícios mais eficientes para cada grupo muscular, explicados de forma clara e organizada. Assim, você economiza tempo e garante treinos direcionados e de resultado.
       
@@ -94,4 +110,6 @@ Com nossa calculadora TMB (Taxa Metabólica Basal), você pode montar um plano a
     <button class="bottom-left" style="left: 49%;right: 38%;bottom: 41%;top: 33%;" onclick="alert('Clicou Bottom Left!')"><i class="bi bi-fork-knife"></i><br>dietas</button>
     <button class="bottom-right" style="left: 63%;right: 23%;bottom: 41%;top: 33%;"  onclick="alert('Clicou Bottom Right!')"><i class="bi bi-sort-numeric-up"></i><br>divisoes de treino</button>
   </div>
-</div>
+</div>  -->
+
+{% endblock %}
