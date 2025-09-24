@@ -12,6 +12,11 @@ body{
 .categoria{
   display: flex;
 }
+.conteudo {
+  margin-left: 220px;
+  padding: 30px;
+  flex: 1;
+}
 .categoria img:hover{
   transform: scale(1.03);
   

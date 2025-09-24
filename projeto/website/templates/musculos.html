@@ -8,6 +8,54 @@
 
 {% block 'body' %}
 
+<h1>selecione o musculo</h1>
+<br>
+<div class="categorias">
+ <div class="tds" style="padding-left: 30px;">
+   <p> peitoral <br>
+     </p>
+   <a href="{% url 'dieta' %}"><img style="width: 95%;" src="{% static 'img/peitoral.png' %}" alt="foto-de-dieta"></a>
+ </div>
+ <div class="tds">
+   <p> triceps </p>
+   <a href="{% url 'cronograma' %}"><img style="width: 95%;" src="{% static 'img/triceps.png' %}" alt="foto-de-dieta"></a>
+ </div>
+ <div class="tds">
+   <p> biceps 
+</p>
+   <a href="{% url 'musculos' %}"><img style="width: 95%;" src="{% static 'img/biceps.png' %}" alt="foto-treinando"></a>
+ </div>
+  <div class="tds">
+    <p> costas 
+ </p>
+    <a href="{% url 'musculos' %}"><img style="width: 84%;" src="{% static 'img/costas.png' %}" alt="foto-treinando"></a>
+  </div>
+</div>
+<div class="categorias">
+    <div class="tds">
+        <p> abdomen 
+     </p>
+        <a href="{% url 'musculos' %}"><img style="width: 95%;" src="{% static 'img/abdomen.png' %}" alt="foto-treinando"></a>
+      </div>
+  <div class="tds">
+    <p> posterior 
+ </p>
+    <a href="{% url 'musculos' %}"><img style="width: 95%;" src="{% static 'img/posterior.png' %}" alt="foto-treinando"></a>
+  </div>
+  <div class="tds">
+    <p> panturrilha
+ </p>
+    <a href="{% url 'musculos' %}"><img style="width: 95%;" src="{% static 'img/panturrilha.png' %}" alt="foto-treinando"></a>
+  </div>
+  <main class="conteudo">
+  <div class="tds">
+    <p> quadriceps
+ </p>
+    <a href="{% url 'musculos' %}"><img style="width: 90%;" src="{% static 'img/quadricpes.png' %}" alt="foto-treinando"></a>
+  </div>
+</div>
+</main>
+
 
 
 
