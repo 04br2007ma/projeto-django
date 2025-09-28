@@ -19,15 +19,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'cronograma' %}" class="nav-link text-white">
-                            <i class="bi bi-calendar-week" style="padding-left: 40px;"></i>
-                            <br>
-                                <use xlink:href="#speedometer2"></use>
-                            </svg>
-                            cronogramas
-                        </a>
-                    </li>
-                    <li>
                         <a href="#" class="nav-link text-white">
                         <i class="bi bi-shift" style="padding-left: 15px;"></i>
                             <br>
@@ -46,7 +37,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="{% url 'cronograma' %}" class="nav-link text-white">
+                           <i class="bi bi-info-circle" style="padding-left: 13px;"></i>
+                            <br>
+                                <use xlink:href="#speedometer2"></use>
+                            </svg>
+                            Sobre
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'meu_perfil' %}" class="nav-link text-white">
                             <i class="bi bi-person-circle" style="padding-left: 30px;"></i>
                             <br>
                             <use xlink:href="#people-circle"></use>

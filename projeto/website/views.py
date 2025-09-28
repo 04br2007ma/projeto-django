@@ -21,6 +21,10 @@ def musculos(request):
 
 def cargas(request):
     return render(request, 'cargas.html')
+
+
+def meu_perfil(request):
+    return render(request, 'meu_perfil.html')
 # def lista_pessoas(request):
 #     pessoas = Pessoa.objects.all().order_by('nome')
 #     return render(request, 'pessoas.html', {'pessoas': pessoas})

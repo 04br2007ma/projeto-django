@@ -1,113 +1,64 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block 'head' %}
 {% endblock %}
-
 {% block 'title' %}pagina de catalogo {% endblock %}
-
 {% block 'body' %}
-
 <div class="funcionalidades">
- <h1>calcule sua dieta e<br> personalize seu treino</h1>
-</div>
- <br>
-<div class="categorias">
-  <div class="tds" style="padding-left: 30px;">
-    <p>🥗 Calcule e Monte sua dieta personalizada <br>
-      </p>
-    <a href="{% url 'dieta' %}"><img style="width: 95%;" src="{% static 'img/dieta.png' %}" alt="foto-de-dieta"></a>
-  </div>
-  <div class="tds">
-    <p>📅 crie seu cronograma de treinos</p>
-    <a href="{% url 'cronograma' %}"><img style="width: 95%;" src="{% static 'img/calendario.png' %}" alt="foto-de-dieta"></a>
-  </div>
-  <div class="tds">
-    <p>📓 anote suas cargas
-</p>
-    <a href="{% url 'musculos' %}"><img style="width: 95%;" src="{% static 'img/ChatGPT Image 10 de set. de 2025, 20_16_17.png' %}" alt="foto-treinando"></a>
-  </div>
+    <h1><strong>calcule sua dieta e<br> personalize seu treino</strong></h1>
 </div>
 <br>
-<div class="funcionalidades">
-<h2>treinos e exercicios</h2>
-</div>
-<br>
-<div class="categoria">
-  <div class="tds" style="padding-left: 30px;">
-    <p>💪 Treine o músculo certo com os melhores exercícios
-    </p>
-    <a href="{% url 'cargas' %}"><img style="width: 95%;" src="{% static 'img/ChatGPT Image 10 de set. de 2025, 20_17_01.png' %}" alt="foto-treinando"></a>
-   </div>
-  <div class="tds">
-      <p>🏋️‍♂️ Tecnicas de treino e dieta
-      </p>
-    <a href="{% url 'cargas' %}"><img style="width: 95%;" src="{% static 'img/musculos.png' %}" alt="foto-treinando"></a>
-  </div>
-  <div class="tds">
-      <p>⚖️ anote seu peso
-      </p>
-    <a href="{% url 'cronograma' %}"><img style="width: 95%;" src="{% static 'img/ChatGPT Image 10 de set. de 2025, 20_18_02.png' %}" alt="foto-treinando"></a>
-  </div>
-</div>
-<br>
-<br>
-
-<footer style="background: linear-gradient(135deg, #212529, #292b2e); color: white; padding: 40px 20px; text-align: center; font-family: Arial, sans-serif;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h3 style="margin-bottom: 10px;">trevigno</h3>
-    <p style="margin-bottom: 20px;">Calcule sua dieta, acompanhe seus cronogramas e alcance seus objetivos de forma saudável!</p>
-    
-    <div style="margin-bottom: 20px;">
-      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Início</a>
-      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Cronogramas</a>
-      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Cargas</a>
-      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Dietas</a>
-      <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Meu Perfil</a>
+<div class="conjuntao">
+    <div class=" conjunto">
+        <div class="card" style="right: 10px; bottom: 10px">
+            <a href="{% url 'dieta' %}"><img style="width: 100%;" src="{% static 'img/prato.jpg' %}" alt="dieta"></a>
+            <div class="card-body">
+                <h5 class="card-title"><i style="color: #4da54c" class="bi bi-fork-knife"></i> Monte sua dieta personalizada</h5>
+                <p>calcule seu gasto calorico e monte uma refeicao equilibrada</p>
+            </div>
+        </div>
+        <div class="card" style="left: 10px; bottom: 10px">
+            <a href="{% url 'cronograma' %}"><img style="width: 100%;" src="{% static 'img/training.jpg' %}" alt="foto-de-dieta"></a>
+            <div class="card-body">
+                <h5 class="card-title"><i style="color: #376aff" class="bi bi-bar-chart-fill"></i> Acompanhe sua evolucao</h5>
+                <p class="card-text">Anote suas progressoes de cargas/sua perca ou ganho de peso</p>
+            </div>
+        </div>
     </div>
-    
-    <p style="font-size: 14px;">&copy; 2025 trevigno. Todos os direitos reservados.</p>
-  </div>
+    <div class="conjunto">
+        <div class="card" style="right: 10px; top: 10px">
+            <a href="{% url 'cargas' %}"><img style="width: 100%;" src="{% static 'img/polia.jpg' %}" alt="foto-treinando"></a>
+            <div class="card-body">
+                <h5 class="card-title"><i style="color: #e42a2a" class="bi bi-fire"></i> Treinos personalizados</h5>
+                <p class="card-text">Escolha um treino pronto ou monte o seu proprio treino</p>
+            </div>
+        </div>
+        <div class="card" style="left: 10px; top: 10px;">
+            <a href="{% url 'cronograma' %}"><img style="width: 100%;" src="{% static 'img/limits.jpg' %}" alt="foto-treinando"></a>
+            <div class="card-body">
+                <h5 class="card-title"><i style="color: #ebd55d" class="bi bi-lightning-charge-fill"></i> Supere seus limites</h5>
+                <p class="card-text">Participe de desafios semanais</p>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<footer style="background: linear-gradient(135deg, #212529, #292b2e); color: white; padding: 40px 20px; text-align: center; font-family: Arial, sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+        <h3 style="margin-bottom: 10px;">trevigno</h3>
+        <p><i class="bi bi-github"></i><br>
+            github
+        </p>
+        <p style="margin-bottom: 20px;">Calcule sua dieta, acompanhe seus cronogramas e alcance seus objetivos de forma saudável!</p>
+        <div style="margin-bottom: 20px;">
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Início</a>
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Cronogramas</a>
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Cargas</a>
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Dietas</a>
+            <a href="#" style="color: white; margin: 0 10px; text-decoration: none; transition: color 0.3s;">Meu Perfil</a>
+        </div>
+        <p style="font-size: 14px;">&copy; 2025 trevigno. Todos os direitos reservados.</p>
+    </div>
 </footer>
-
-
 {% endblock %}
-
-<!-- <img src="{% static 'img/ChatGPT Image 11 de set. de 2025, 20_02_22.png' %}" alt="">
- Nosso site é a ferramenta ideal para quem busca treinar com inteligência e se alimentar de forma estratégica. Reunimos em um único lugar tudo o que você precisa para alcançar seus objetivos de saúde, estética e performance.
-
-🔥 Tudo em um só lugar: alimentação, treinos, organização e acompanhamento.
-O objetivo é simples: te ajudar a evoluir com foco, disciplina e resultados reais.
-
-Escolha a parte do corpo que deseja treinar e receba uma lista com os exercícios mais eficientes para cada grupo muscular, explicados de forma clara e organizada. Assim, você economiza tempo e garante treinos direcionados e de resultado.
-      
-🗓 Divisão de treinos A/B/C
-
-Organize sua rotina com nossa ferramenta de divisão de treinos estilo A/B/C, feita para equilibrar intensidade, descanso e evolução. Essa estrutura permite que você distribua melhor os grupos musculares ao longo da semana, potencializando os ganhos.
-
-🏋️ Registro de cargas
-
-Acompanhe sua evolução de maneira profissional! Anote os pesos utilizados em cada exercício, veja sua progressão ao longo do tempo e ajuste seus treinos de forma estratégica para continuar evoluindo.
-
-Com nossa calculadora TMB (Taxa Metabólica Basal), você pode montar um plano alimentar sob medida para o seu corpo e seus objetivos — seja ganhar massa muscular, perder gordura ou manter um estilo de vida equilibrado. A dieta é ajustada de forma prática, considerando suas calorias diárias e a divisão de macronutrientes.
- <div class="princ">
-  <p>Nosso site foi criado para ser o seu parceiro de treino e alimentação. Aqui você encontra tudo o que precisa para evoluir com saúde e organização: <br>
-
-    Calculadora TMB: monte sua dieta personalizada de acordo com seus objetivos.<br>
-    
-    Exercícios por músculo: escolha a parte do corpo que deseja treinar e descubra os melhores exercícios para cada grupo muscular.<br>
-    
-    Divisão de treinos (A/B/C): organize sua rotina de treinos de forma prática e eficiente.<br>
-    
-    Anotações de cargas: acompanhe sua evolução registrando os pesos utilizados em cada treino.<br>
-    
-    Tudo em um só lugar, com foco em praticidade, desempenho e resultados.</p>
-  <div class="image-container" style="display: flex;justify-content: space-around;">
-    <img src="./static/img/inicial.png" alt="Imagem Exemplo" style="width: 58%">
-
-    <button class="top-left" style="left: 49%;right: 38%;bottom: 70%;top: 5%;" onclick="alert('Clicou Top Left!')"><i class="bi bi-chevron-double-up"></i><br>cargas</button>
-    <button class="top-right" style="left: 63%;right: 23%;bottom: 70%;top: 5%;" onclick="alert('Clicou Top Right!')"><i class="bi bi-calendar-date"></i><br>cronogramas</button>
-    <button class="bottom-left" style="left: 49%;right: 38%;bottom: 41%;top: 33%;" onclick="alert('Clicou Bottom Left!')"><i class="bi bi-fork-knife"></i><br>dietas</button>
-    <button class="bottom-right" style="left: 63%;right: 23%;bottom: 41%;top: 33%;"  onclick="alert('Clicou Bottom Right!')"><i class="bi bi-sort-numeric-up"></i><br>divisoes de treino</button>
-  </div>
-</div>  -->
