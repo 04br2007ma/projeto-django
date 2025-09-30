@@ -44,7 +44,10 @@ INSTALLED_APPS = [
     # 'projeto.core.apps.CoreConfig',
     'projeto.website.apps.WebsiteConfig',
     'projeto.usuarios.apps.UsuariosConfig',
+    'projeto.area_administrativa.apps.AreaAdministrativaConfig',
+
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

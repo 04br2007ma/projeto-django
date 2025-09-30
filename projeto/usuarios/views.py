@@ -3,6 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
+from django.urls import reverse
+
 
 
 Usuario = get_user_model()
@@ -42,7 +44,9 @@ def registrar_usuario(request):
             user.save()
 
             login(request, user)
-            return redirect("area_restrita")
+            #return redirect("home_administrativo")
+            return redirect('home_administrativo')
+
 
     return render(request, "registro.html", {"erro": erro})
 
@@ -56,7 +60,9 @@ def login_usuario(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("area_restrita")
+            #return redirect("home_administrativo")
+            return redirect('home_administrativo')
+
         else:
             erro = "Usuário ou senha inválidos."
 
@@ -64,10 +70,13 @@ def login_usuario(request):
 
 
 def logout_usuario(request):
+    request.session.flush()
     logout(request)
     return redirect("login")
+    
+    #return redirect(reverse('home'))
 
 
-@login_required
-def area_restrita(request):
-    return render(request, "area_restrita.html")
+# @login_required
+# def area_restrita(request):
+#     return render(request, "area_restrita.html")
