@@ -46,12 +46,21 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'meu_perfil' %}" class="nav-link text-white">
-                            <i class="bi bi-person-circle" style="padding-left: 30px;"></i>
+                        <a href="{% url 'login' %}" class="nav-link text-white">
+                            <i class="bi bi-person-down" style="padding-left: 30px;"></i>
                             <br>
                             <use xlink:href="#people-circle"></use>
                             </svg>
-                            meu perfil
+                            Fazer Login
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'meu_perfil' %}" class="nav-link text-white">
+                            <i class="bi bi-person-add" style="padding-left: 30px;"></i>
+                            <br>
+                            <use xlink:href="#people-circle"></use>
+                            </svg>
+                            Criar Conta
                         </a>
                     </li>
                 </ul>

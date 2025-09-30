@@ -1,3 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'title' %}pagina de catalogo {% endblock %}
+
+{% block 'body' %}
 <h1>PAINEL</h1>
 
-<a href="{% url 'meus_treinos' %}">MEUS TREEINOS</a>
+<a href="{% url 'meus_treinos' %}">MEUS TREINOS</a>
+{% endblock %}
