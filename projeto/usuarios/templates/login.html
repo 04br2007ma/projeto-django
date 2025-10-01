@@ -7,24 +7,33 @@
 {% block 'title' %}pagina de catalogo {% endblock %}
 
 {% block 'body' %}
-<h1>sobre</h1>
-<div class="form-floating mb-3">
-    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-    <label for="floatingInput">Email address</label>
+<br>
+<br>
+<div class="boot">
+  <a href="{% url 'home'%}"><img class="mb-4" src="{% static 'img/logobranco.png' %}" alt="" width="100" height="100" style="width: 100%;"></a>
+  <form name="formLogin" style="display: flex;flex-direction: column;align-items: center;" id="formLogin" class="formLogin" method="post">
+  {% if erro %}<p style="color:red;">{{ erro }}</p>{% endif %}
+  <form method="post">
+  {% csrf_token %}
+    <div class="form-floating">
+      <input type="text" class="form-control" style="width: auto;" id="usuarioUsername" name="usuarioUsername" placeholder="Digite seu usuário">
+      <label for="usuarioUsername">Usuário</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" style="width: auto;" class="form-control" id="usuarioSenha" name="usuarioSenha" placeholder="Senha">
+      <label for="usuarioSenha">Senha</label>
+    </div>
+
+  <div class="checkbox mb-3">
   </div>
-  <div class="form-floating">
-    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-    <label for="floatingPassword">Password</label>
-  </div>
-<h2>Login</h2>
-{% if erro %}<p style="color:red;">{{ erro }}</p>{% endif %}
-<form method="post">
-    {% csrf_token %}
-    <label>Usuário:</label>
-    <input type="text" name="username"><br>
-    <label>Senha:</label>
-    <input type="password" name="password"><br>
-    <button type="submit">Entrar</button>
-</form>
-<a href="{% url 'registrar' %}">Criar conta</a>
+  <!-- <button class="bota w-100 btn btn-lg btn-primary">Entrar</button> -->
+  <input class="bota btn btn-lg btn-primary" type="submit" value="Entrar">
+  </form>
+  <p class="mt-5 mb-3 text-muted">Caso seja novo por aqui tente se <a href="{% url 'registrar' %}">Cadastrar</a></p>
+<p class="mt-5 mb-3 text-muted">&copy;2025</p>
+</div>
+
+
+
+
 {% endblock %}
