@@ -5,3 +5,78 @@
 {% endblock %}
 
 {% block 'title' %}pagina de catalogo {% endblock %}
+{% block 'body' %}
+<style>
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.conteudo p{
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+}
+</style>
+<h1 class="anotar">selecione o musculo</h1>
+<br>
+<main class="conteudo">
+    <div id="conteudo" class="secao">
+ <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
+   <p> peitoral <br>
+     </p>
+   <a href="#"><img src="{% static 'img/imgsprojetohevy/peitoral.png' %}" alt="foto-de-dieta"></a>
+ </div>
+ <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
+   <p> triceps </p>
+   <a href="#"><img src="{% static 'img/imgsprojetohevy/triceps.png' %}" alt="foto-de-dieta"></a>
+ </div>
+ <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
+   <p> biceps </p>
+   <a href="#"><img src="{% static 'img/imgsprojetohevy/biceps.png' %}" alt="foto-treinando"></a>
+ </div>
+  <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
+    <p> costas </p>
+    <a href="#"><img src="{% static 'img/imgsprojetohevy/costas.png' %}" alt="foto-treinando"></a>
+  </div>
+    <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
+        <p> abdomen 
+     </p>
+        <a href="#"><img src="{% static 'img/imgsprojetohevy/abdomen.png' %}" alt="foto-treinando"></a>
+      </div>
+  <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
+    <p> posterior 
+ </p>
+    <a href="#"><img src="{% static 'img/imgsprojetohevy/posterior.png' %}" alt="foto-treinando"></a>
+  </div>
+  <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
+    <p> panturrilha
+ </p>
+    <a href="#"><img src="{% static 'img/imgsprojetohevy/panturrilha.png' %}" alt="foto-treinando"></a>
+  </div>
+  <div class="tds card" onclick="mostrarConteudo('RECOMENDADOS')">
+    <p> quadriceps
+ </p>
+    <a href="#"><img src="{% static 'img/imgsprojetohevy/quadricpes.png' %}" alt="foto-treinando"></a>
+  </div>
+</div>
+<div id="peitoral" class="secao" style="display: none;">
+    <div class="container mt-4">
+        <h2 class="mb-4">Criar Postagem</h2>
+
+</div>
+
+
+<script>
+function mostrarConteudo(id) {
+    const secoes = document.querySelectorAll('.secao');
+    secoes.forEach(secao => {
+      secao.style.display = 'none';
+    });
+    const secaoAtiva = document.getElementById(id);
+    if (secaoAtiva) {
+      secaoAtiva.style.display = 'block';
+    }
+  }</script>
+
+{% endblock %}

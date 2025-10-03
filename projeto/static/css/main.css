@@ -59,6 +59,13 @@ personal-image {
   align-items: center;
   flex-direction: column;
 }
+.anotar{
+  display: flex;
+  justify-content: center;
+}
+.categorias img{
+  width: 300px;
+}
 .boot{
   display: flex;
   align-items: center;
@@ -100,9 +107,7 @@ personal-image {
 }
 .tresimgs{
     display: flex;
-
 }
-
 #formCalcularIMC{
     display: none;
 }
@@ -147,23 +152,7 @@ personal-image {
   display: flex;
   width: 51%;
 }
-.card-body{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.card{
-  border-radius: 6%;
-  width: 75%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.card:hover{
-  transform: scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-}
-.card img{
-  border-radius: 6%;
-}
+
 .conjuntao{
   display: flex;
   flex-wrap: wrap;
@@ -201,3 +190,78 @@ personal-image {
 .funcionalidades h1{
     font-size: xxx-large;
 }
+/* {% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'title' %}pagina de catalogo {% endblock %}
+{% block 'body' %}
+<style>
+.conteudo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.conteudo p{
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+}
+</style>
+<h1 class="anotar">selecione o musculo</h1>
+<br>
+<main class="conteudo">
+    <div id="conteudo" class="secao">
+ <div class="tds card secao" style="display: none;">
+   <p> peitoral <br>
+     </p>
+   <a href="{% url 'dieta' %}"><img src="{% static 'img/imgsprojetohevy/peitoral.png' %}" alt="foto-de-dieta"></a>
+ </div>
+ <div class="tds card secao" style="display: none;">
+   <p> triceps </p>
+   <a href="{% url 'cronograma' %}"><img src="{% static 'img/imgsprojetohevy/triceps.png' %}" alt="foto-de-dieta"></a>
+ </div>
+ <div class="tds card secao" style="display: none;">
+   <p> biceps </p>
+   <a href="{% url 'musculos' %}"><img src="{% static 'img/imgsprojetohevy/biceps.png' %}" alt="foto-treinando"></a>
+ </div>
+  <div class="tds card secao" style="display: none;">
+    <p> costas </p>
+    <a href="{% url 'musculos' %}"><img src="{% static 'img/imgsprojetohevy/costas.png' %}" alt="foto-treinando"></a>
+  </div>
+    <div class="tds card secao" style="display: none;">
+        <p> abdomen 
+     </p>
+        <a href="{% url 'musculos' %}"><img src="{% static 'img/imgsprojetohevy/abdomen.png' %}" alt="foto-treinando"></a>
+      </div>
+  <div class="tds card secao" style="display: none;">
+    <p> posterior 
+ </p>
+    <a href="{% url 'musculos' %}"><img src="{% static 'img/imgsprojetohevy/posterior.png' %}" alt="foto-treinando"></a>
+  </div>
+  <div class="tds card secao" style="display: none;">
+    <p> panturrilha
+ </p>
+    <a href="{% url 'musculos' %}"><img src="{% static 'img/imgsprojetohevy/panturrilha.png' %}" alt="foto-treinando"></a>
+  </div>
+  <!-- <main class="conteudo"> -->
+  <div class="tds card" style="display: none;">
+    <p> quadriceps
+ </p>
+    <a href="{% url 'musculos' %}"><img src="{% static 'img/imgsprojetohevy/quadricpes.png' %}" alt="foto-treinando"></a>
+  </div>
+</div>
+<script>function mostrarConteudo(id) {
+    const secoes = document.querySelectorAll('.secao');
+    secoes.forEach(secao => {
+      secao.style.display = 'none';
+    });
+    const secaoAtiva = document.getElementById(id);
+    if (secaoAtiva) {
+      secaoAtiva.style.display = 'block';
+    }
+  }</script>
+
+{% endblock %} */

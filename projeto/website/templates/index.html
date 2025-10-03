@@ -4,6 +4,25 @@
 {% endblock %}
 {% block 'title' %}pagina de catalogo {% endblock %}
 {% block 'body' %}
+<style>
+.card-body{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.card{
+  border-radius: 6%;
+  width: 75%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover{
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.card img{
+  border-radius: 6%;
+}
+</style>
 <div class="funcionalidades">
     <h1><strong>calcule sua dieta e<br> personalize seu treino</strong></h1>
 </div>
@@ -18,7 +37,7 @@
             </div>
         </div>
         <div class="card" style="left: 10px; bottom: 10px">
-            <a href="{% url 'cronograma' %}"><img style="width: 100%;" src="{% static 'img/training.jpg' %}" alt="foto-de-dieta"></a>
+            <a href="{% url 'musculos' %}"><img style="width: 100%;" src="{% static 'img/training.jpg' %}" alt="foto-de-dieta"></a>
             <div class="card-body">
                 <h5 class="card-title"><i style="color: #376aff" class="bi bi-bar-chart-fill"></i> Acompanhe sua evolucao</h5>
                 <p class="card-text">Anote suas progressoes de cargas/sua perca ou ganho de peso</p>
