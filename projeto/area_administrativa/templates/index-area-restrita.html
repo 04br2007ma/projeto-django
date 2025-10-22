@@ -8,6 +8,12 @@
 
 {% block 'body' %}
 <h1>PAINEL</h1>
+{{request.user}}
+<h2>Bem-vindo, {{ usuario.first_name }}</h2>
+<p>Nome de usuário: {{ usuario.username }}</p>
+<p>Email: {{ usuario.email }}</p>
+<p>Bio: {{ usuario.bio }}</p>
+<img class="personal-avatar" id="preview" src="{% if usuario.avatar %}{{ usuario.avatar.url }}{% else %}{% static 'img/default-avatar.jfif' %}{% endif %}" alt="Avatar do usuário" /><br>
 
 <a href="{% url 'meus_treinos' %}">MEUS TREINOS</a>
 {% endblock %}

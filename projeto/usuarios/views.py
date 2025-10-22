@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -12,6 +13,7 @@ Usuario = get_user_model()
 
 def registrar_usuario(request):
     erro = None
+    print(request.method)
     if request.method == "POST":
         apelido = request.POST.get("apelido")
         username = request.POST.get("username")
@@ -20,6 +22,8 @@ def registrar_usuario(request):
         password2 = request.POST.get("password2")
         avatar = request.FILES.get("avatar")  # pega o arquivo
         bio = request.POST.get("bio")
+
+        print(apelido, username, bio)
 
         # 🔹 validações manuais
         if not username or not email or not password1:
@@ -33,7 +37,7 @@ def registrar_usuario(request):
             user = Usuario.objects.create_user(
                 username=username,
                 email=email,
-                password=make_password(password1),
+                password=password1,
                 #password=password1,
                 bio=bio,
             )
@@ -44,8 +48,8 @@ def registrar_usuario(request):
             user.save()
 
             login(request, user)
-            #return redirect("home_administrativo")
-            return redirect('home_administrativo')
+            return redirect("home_administrativo")
+        
 
 
     return render(request, "registro.html", {"erro": erro})

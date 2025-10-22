@@ -1,10 +1,18 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block 'head' %}
-{% endblock %}
-
 {% block 'title' %}pagina de catalogo {% endblock %}
+
+{% block 'head' %}
+<style>
+  #preview {
+    /* margin-top: 20px;
+    max-width: 300px;
+    border-radius: 8px; */
+    /* display: none; */
+  }
+</style>
+{% endblock %}
 
 {% block 'body' %}
 <div class="registrar-usuario">
@@ -14,11 +22,12 @@
     {% csrf_token %}
     <div class="personal-image">
         <label class="label">
-          <input type="file" />
+          <input type="file" id="avatar-perfil" name="avatar" accept="image/*"/>
           <figure class="personal-figure">
-            <img src="https://avatars1.githubusercontent.com/u/11435231?s=460&v=4" class="personal-avatar" alt="avatar">
+            <img class="personal-avatar" id="preview" src="{% if usuario_dados.avatar %}{{ usuario_dados.avatar.url }}{% else %}{% static 'img/default-avatar.jfif' %}{% endif %}" alt="Avatar do usuário" /><br>
+
             <figcaption class="personal-figcaption">
-              <img src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png">
+              <img src="{% static 'img/camera-white.png' %}">
             </figcaption>
           </figure>
         </label>
@@ -40,4 +49,23 @@
 
   <a href="{% url 'login' %}">Já tenho conta</a>
 </div>
+
+<script>
+  const fileInput = document.getElementById('avatar-perfil');
+  const preview = document.getElementById('preview');
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      preview.src = imageUrl;
+      preview.style.display = 'block';
+
+      // libera o objeto URL quando não for mais necessário
+      preview.onload = () => URL.revokeObjectURL(preview.src);
+    } else {
+      preview.style.display = 'none';
+    }
+  });
+</script>
 {% endblock %}
