@@ -18,13 +18,13 @@
 <div class="registrar-usuario">
  <h2>Registrar Usuário</h2>
   {% if erro %}<p style="color:red;">{{ erro }}</p>{% endif %}
-   <form method="post" enctype="multipart/form-data">
+   <form method="post" enctype="multipart/form-data" style="display: flex;flex-direction: column;align-items: center;">
     {% csrf_token %}
     <div class="personal-image">
         <label class="label">
           <input type="file" id="avatar-perfil" name="avatar" accept="image/*"/>
-          <figure class="personal-figure">
-            <img class="personal-avatar" id="preview" src="{% if usuario_dados.avatar %}{{ usuario_dados.avatar.url }}{% else %}{% static 'img/default-avatar.jfif' %}{% endif %}" alt="Avatar do usuário" /><br>
+          <figure class="personal-figure" >
+            <img class="personal-avatar" id="preview" src="{% if usuario_dados.avatar %}{{ usuario_dados.avatar.url }}{% else %}{% static 'img/fotosem.avif' %}{% endif %}" alt="Avatar do usuário" /><br>
 
             <figcaption class="personal-figcaption">
               <img src="{% static 'img/camera-white.png' %}">

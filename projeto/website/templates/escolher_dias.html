@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'title' %}pagina de catalogo{% endblock %}
+
+{% block 'body' %}
+ 
+<h2>Escolha o dia da semana para cada músculo</h2>
+
+<form action="{% url 'montar_treino' %}" method="POST">
+    {% csrf_token %}
+
+    {% for musculo in musculos %}
+        <label><b>{{ musculo|capfirst }}</b></label>
+        <select name="dia_{{ musculo }}" class="form-select mb-3">
+            {% for dia in dias %}
+                <option value="{{ dia }}">{{ dia|capfirst }}</option>
+            {% endfor %}
+        </select>
+    {% endfor %}
+
+    <button class="btn btn-success">Enviar</button>
+</form>
+
+{% endblock %}

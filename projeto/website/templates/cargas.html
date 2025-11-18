@@ -7,9 +7,52 @@
 {% block 'title' %}pagina de catalogo {% endblock %}
 {% block 'body' %}
 <style>
-.conteudo{
+
+.conteudo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#conteudo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; 
+    max-width: 900px; 
+}
+
+.tds.card {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.tds.card.selecionado {
+    border: 2px solid #4CAF50; 
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.tds.card img {
+    width: 150px;
+    height: auto;
+}
+
+.tds.card p {
+    font-size: 20px;
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.conteudo{
+    display: flex;
+    
     align-items: flex-end;
 }
 .conteudo p{
@@ -22,52 +65,88 @@
 <br>
 <main class="conteudo">
     <div id="conteudo" class="secao">
- <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
-   <p> peitoral <br>
-     </p>
+<div class="tds card" onclick="toggleMusculo('peito', this)">
+    <p>Peitoral</p>
+
    <a href="#"><img src="{% static 'img/imgsprojetohevy/peitoral.png' %}" alt="foto-de-dieta"></a>
  </div>
- <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
-   <p> triceps </p>
+<div class="tds card" onclick="toggleMusculo('triceps', this)">
+    <p>Tríceps</p>
+
    <a href="#"><img src="{% static 'img/imgsprojetohevy/triceps.png' %}" alt="foto-de-dieta"></a>
  </div>
- <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
-   <p> biceps </p>
+ <div class="tds card" onclick="toggleMusculo('biceps', this)">
+    <p>Bíceps</p>
+
    <a href="#"><img src="{% static 'img/imgsprojetohevy/biceps.png' %}" alt="foto-treinando"></a>
  </div>
-  <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
-    <p> costas </p>
+  <div class="tds card" onclick="toggleMusculo('costas', this)">
+    <p>Costas</p>
+
     <a href="#"><img src="{% static 'img/imgsprojetohevy/costas.png' %}" alt="foto-treinando"></a>
   </div>
-    <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
-        <p> abdomen 
-     </p>
+   <div class="tds card" onclick="toggleMusculo('abdomen', this)">
+    <p>Abdômen</p>
+
         <a href="#"><img src="{% static 'img/imgsprojetohevy/abdomen.png' %}" alt="foto-treinando"></a>
       </div>
-  <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
-    <p> posterior 
- </p>
+<div class="tds card" onclick="toggleMusculo('posterior', this)">
+    <p>Posterior</p>
     <a href="#"><img src="{% static 'img/imgsprojetohevy/posterior.png' %}" alt="foto-treinando"></a>
   </div>
-  <div class="tds card secao" onclick="mostrarConteudo('RECOMENDADOS')">
-    <p> panturrilha
- </p>
+  <div class="tds card" onclick="toggleMusculo('panturrilha', this)">
+    <p>Panturrilha</p>
     <a href="#"><img src="{% static 'img/imgsprojetohevy/panturrilha.png' %}" alt="foto-treinando"></a>
   </div>
-  <div class="tds card" onclick="mostrarConteudo('RECOMENDADOS')">
+  <div class="tds card" onclick="toggleMusculo('quadriceps', this)">
     <p> quadriceps
  </p>
     <a href="#"><img src="{% static 'img/imgsprojetohevy/quadricpes.png' %}" alt="foto-treinando"></a>
   </div>
 </div>
+<button class="btn btn-primary mt-4" onclick="confirmarSelecao()">Continuar</button>
 <div id="peitoral" class="secao" style="display: none;">
     <div class="container mt-4">
         <h2 class="mb-4">Criar Postagem</h2>
+        <button class="btn btn-primary mt-4" onclick="confirmarSelecao()">Continuar</button>
+
 
 </div>
 
 
 <script>
+  function confirmarSelecao() {
+    if (musculosSelecionados.length === 0) {
+        alert("Selecione pelo menos um músculo!");
+        return;
+    }
+
+    const url = "{% url 'escolher_dias' %}?musculos=" + musculosSelecionados.join(",");
+    window.location.href = url;
+}
+
+  let musculosSelecionados = [];
+
+function toggleMusculo(nome, elemento) {
+    if (musculosSelecionados.includes(nome)) {
+        musculosSelecionados = musculosSelecionados.filter(m => m !== nome);
+        elemento.classList.remove("selecionado");
+    } else {
+        musculosSelecionados.push(nome);
+        elemento.classList.add("selecionado");
+    }
+}
+
+function confirmarSelecao() {
+    if (musculosSelecionados.length === 0) {
+        alert("Selecione pelo menos um músculo!");
+        return;
+    }
+
+    const url = "{% url 'escolher_dias' %}?musculos=" + musculosSelecionados.join(",");
+    window.location.href = url;
+}
+
 function mostrarConteudo(id) {
     const secoes = document.querySelectorAll('.secao');
     secoes.forEach(secao => {

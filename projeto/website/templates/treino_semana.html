@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'head' %}
+{% endblock %}
+
+{% block 'title' %}pagina de catalogo{% endblock %}
+
+{% block 'body' %}
+ 
+
+<h2>Seu Treino da Semana</h2>
+
+{% for musculo, dia in treino.items %}
+    <div class="card p-3 mb-3">
+        <h3>{{ dia|capfirst }} – {{ musculo|capfirst }}</h3>
+
+        <form>
+            <label>Exercícios:</label>
+            <textarea class="form-control" rows="3" placeholder="Ex: supino reto, voador..."></textarea>
+        </form>
+    </div>
+{% endfor %}
+{% endblock %}

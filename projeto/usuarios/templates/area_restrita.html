@@ -9,5 +9,17 @@
 {% else %}
     <p>Sem avatar.</p>
 {% endif %}
+<h2>Meu Treino da Semana</h2>
+
+{% if treino %}
+    <ul>
+        {% for t in treino %}
+            <li><strong>{{ t.dia|title }}</strong>: {{ t.musculos|title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Nenhum treino cadastrado ainda.</p>
+{% endif %}
+
 
 <a href="{% url 'logout' %}">Sair</a>
