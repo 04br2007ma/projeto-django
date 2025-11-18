@@ -15,6 +15,11 @@
 
     {% for musculo in musculos %}
         <label><b>{{ musculo|capfirst }}</b></label>
+        <br/>
+            {% for dia in dias %}
+                <input type="checkbox" name="dia_{{ musculo }}" class=" mb-3">{{ dia }}</input> 	                
+            {% endfor %}
+        </select>
         <select name="dia_{{ musculo }}" class="form-select mb-3">
             {% for dia in dias %}
                 <option value="{{ dia }}">{{ dia|capfirst }}</option>

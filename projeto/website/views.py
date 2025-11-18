@@ -51,6 +51,7 @@ def escolher_dias(request):
 def montar_treino(request):
     if request.method == "POST":
         treino = TreinoSemana.objects.filter(user=request.user).delete()  # limpa treino antigo
+        
         dia_valor = request.get.POST("")
         for key, value in request.POST.items():
             if key.startswith("dia_"):
