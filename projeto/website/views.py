@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import TreinoSemana
 from django.contrib.auth.decorators import login_required
+
 # from .models import Pessoa
 
 # Create your views here.
@@ -45,15 +46,12 @@ def escolher_dias(request):
     })
 
 
-from django.shortcuts import render, redirect
-from .models import TreinoSemana
-from django.contrib.auth.decorators import login_required
 
 @login_required
 def montar_treino(request):
     if request.method == "POST":
-        TreinoSemana.objects.filter(user=request.user).delete()  # limpa treino antigo
-
+        treino = TreinoSemana.objects.filter(user=request.user).delete()  # limpa treino antigo
+        dia_valor = request.get.POST("")
         for key, value in request.POST.items():
             if key.startswith("dia_"):
                 musculo = key.replace("dia_", "")
