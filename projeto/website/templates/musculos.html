@@ -2,19 +2,79 @@
 {% load static %}
 
 {% block 'head' %}
+<style>
+ .diario-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: 700px;
+    margin: auto;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.registro-rapido {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 120px 120px;
+}
+
+.registro-rapido input, 
+.registro-rapido button {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+}
+
+.registro-rapido button {
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.historico {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+.historico li {
+    margin: 6px 0;
+}
+</style>
 {% endblock %}
 
-{% block 'title' %}pagina de catalogo {% endblock %}
+{% block 'title' %} anotacoes {% endblock %}
 
 {% block 'body' %}
-<select class="form-select" style="width: 50%;" aria-label="Default select example">
-    <option selected>selecione um do menu</option>
-    <option value="1">cargas</option>
-    <option value="2">repeticoes</option>
-    <option value="3">agua</option>
-  </select>
+<br>
 
+  <div class="diario-card">
 
+    <h3 class="titulo-diario">
+        📘 Diário de Progresso
+    </h3>
+
+    <p class="sub">
+        Registre suas cargas e acompanhe sua evolução em tempo real.
+    </p>
+
+    <form class="registro-rapido">
+        <input type="text" placeholder="Exercício: Supino" required>
+        <input type="number" placeholder="Carga (kg)" required>
+        <input type="number" placeholder="Repetições" required>
+        <button type="submit">Salvar</button>
+    </form>
+
+    <hr>
+
+    <h4>Últimas anotações</h4>
+    <ul class="historico">
+        <li>📅 22/11 - Supino: 50kg (8 reps)</li>
+        <li>📅 21/11 - Agachamento: 75kg (6 reps)</li>
+        <li>📅 20/11 - Remada: 40kg (10 reps)</li>
+    </ul>
+</div>
+<br>
+<br>
 
 
 {% endblock %}
