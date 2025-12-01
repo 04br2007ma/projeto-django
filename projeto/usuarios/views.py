@@ -48,7 +48,7 @@ def registrar_usuario(request):
             user.save()
 
             login(request, user)
-            return redirect("home_administrativo")
+            return redirect("painel_dashboard")
         
 
 
