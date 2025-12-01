@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from django.contrib.messages import constants
+from decouple import config,Csv
+from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,15 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7u&9(*r^!%w+-xtm%g+x%qwhw#wdf62vb-yz6u3vne0)b=5+bd'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
-
 
 # Application definition
 
@@ -82,12 +83,12 @@ WSGI_APPLICATION = 'projeto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
+
 
 
 # Password validation
@@ -112,9 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'pt-br'
+LANGUAGE_CODE = config('LANGUAGE_CODE')
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = config('TIME_ZONE')
 
 USE_I18N = True
 
@@ -124,9 +125,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = config('STATIC_URL')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'projeto/static'),)
-STATIC_ROOTS = os.path.join('static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
