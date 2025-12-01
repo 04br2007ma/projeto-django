@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Meus Treinos{% endblock %}
+
+{% block 'body' %}
+
+<h1 class="text-center mt-3">Meus Treinos</h1>
+
+<div class="row mt-4">
+
+    <!-- SIDEBAR -->
+    <div class="col-md-3">
+        <h4>Histórico</h4>
+
+        <ul class="list-group mb-3">
+            {% for s in semanas %}
+                {% with iso=s.inicio.isocalendar %}
+                    <li class="list-group-item {% if semana.id == s.id %}active{% endif %}">
+                        <a class="text-decoration-none {% if semana.id == s.id %}text-white{% endif %}"
+                           href="?semana={{ iso.0 }}-{{ iso.1 }}">
+                            Semana {{ iso.1 }}/{{ iso.0 }}
+                        </a>
+                    </li>
+                {% endwith %}
+            {% endfor %}
+        </ul>
+
+        <h5 class="mt-4">Treinos Passados</h5>
+        <ul class="list-group">
+            {% for s in semanas_passadas %}
+                <li class="list-group-item">
+                    <a href="{% url 'detalhe_semana' s.id %}">
+                        {{ s.inicio }} → {{ s.fim }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Nenhum ainda.</li>
+            {% endfor %}
+        </ul>
+
+        <h5 class="mt-4">Treinos Futuros</h5>
+        <ul class="list-group mb-5">
+            {% for s in semanas_futuras %}
+                <li class="list-group-item">
+                    <a href="{% url 'detalhe_semana' s.id %}">
+                        {{ s.inicio }} → {{ s.fim }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Nenhum agendado.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="col-md-9">
+        
+        {% if semana %}
+            <h3>
+                Semana {{ semana.numero_semana }}/{{ semana.ano }}
+            </h3>
+            <p class="text-muted">
+                {{ semana.inicio }} → {{ semana.fim }}
+            </p>
+
+            <div class="row">
+
+                {% for td in treino_dias %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <strong>{{ td.dia.nome }}</strong>
+                            </div>
+
+                            <ul class="list-group list-group-flush">
+                                {% for m in td.musculos.all %}
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <img src="{% if m.imagem %}{{ m.imagem.url }}{% else %}{% static 'img/default.png' %}{% endif %}"
+                                             class="rounded me-3"
+                                             style="width:50px; height:50px; object-fit:cover;">
+                                        {{ m.nome }}
+                                    </li>
+                                {% empty %}
+                                    <li class="list-group-item text-muted">Nenhum músculo.</li>
+                                {% endfor %}
+                            </ul>
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+            <p class="alert alert-warning">Nenhuma semana selecionada.</p>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

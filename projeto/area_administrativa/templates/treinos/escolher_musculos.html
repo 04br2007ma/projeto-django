@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block 'title' %}Selecionar Músculos{% endblock %}
+
+
+{% block 'head' %}
+
+<style>
+.conteudo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#conteudo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; 
+    max-width: 900px; 
+}
+
+.card-musculo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.card-musculo img {
+    width: 150px;
+}
+
+.card-musculo:hover {
+    transform: scale(1.05);
+}
+
+.card-musculo.selecionado {
+    border: 2px solid #4CAF50; 
+    background: rgba(76, 175, 80, 0.1);
+}
+
+.card-musculo p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+</style>
+{% endblock %}
+{% block 'body' %}
+<h1 class="text-center mt-3">Selecione os Músculos do Treino</h1>
+
+<main class="conteudo mt-4">
+    <div id="conteudo">
+        {% for m in musculos %}
+        <div class="card-musculo" onclick="toggleMusculo('{{ m.id }}', this)">
+            <p>{{ m.nome }}</p>
+            {% if m.imagem %}
+            <img src="{{ m.imagem.url }}">
+            {% else %}
+            <img src="{% static 'img/default.png' %}">
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+<div class="text-center">
+    <button class="btn btn-primary mt-4" onclick="confirmarSelecao()">Continuar</button>
+</div>
+
+<script>
+let musculosSelecionados = [];
+
+function toggleMusculo(id, elemento) {
+    if (musculosSelecionados.includes(id)) {
+        musculosSelecionados = musculosSelecionados.filter(m => m !== id);
+        elemento.classList.remove("selecionado");
+    } else {
+        musculosSelecionados.push(id);
+        elemento.classList.add("selecionado");
+    }
+}
+
+function confirmarSelecao() {
+    if (musculosSelecionados.length === 0) {
+        alert("Selecione pelo menos um músculo!");
+        return;
+    }
+
+    const url = "{% url 'escolher_dias' %}?musculos=" + musculosSelecionados.join(",");
+    window.location.href = url;
+}
+</script>
+
+{% endblock %}

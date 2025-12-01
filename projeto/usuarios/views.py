@@ -58,14 +58,14 @@ def registrar_usuario(request):
 def login_usuario(request):
     erro = None
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
+        username = request.POST.get("usuarioUsername")
+        password = request.POST.get("usuarioSenha")
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
             #return redirect("home_administrativo")
-            return redirect('home_administrativo')
+            return redirect('painel_dashboard')
 
         else:
             erro = "Usuário ou senha inválidos."

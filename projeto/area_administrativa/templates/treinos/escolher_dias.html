@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Selecionar Dias{% endblock %}
+
+{% block 'head' %}
+
+<style>
+.dias-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.dia-card {
+    padding: 20px;
+    width: 140px;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    background: #f3f3f3;
+    transition: .2s;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.dia-card:hover {
+    transform: scale(1.05);
+}
+
+.dia-card.selecionado {
+    border: 2px solid #2196F3;
+    background: rgba(33, 150, 243, 0.1);
+}
+</style>
+{%endblock%}
+{% block 'body' %}
+<h1 class="text-center">Escolha os Dias de Treino</h1>
+
+<p class="text-center mt-2">Músculos selecionados: <strong>{{ nomes_musculos }}</strong></p>
+
+<div class="dias-container">
+
+    {% for d in dias %}
+    <div class="dia-card" onclick="toggleDia('{{ d.id }}', this)">
+        {{ d.nome }}
+    {% endfor %}
+
+</div>
+
+<div class="text-center">
+    <button class="btn btn-success mt-4" onclick="confirmarDias()">Salvar Treino</button>
+</div>
+
+<script>
+let diasSelecionados = [];
+
+function toggleDia(id, elemento) {
+    if (diasSelecionados.includes(id)) {
+        diasSelecionados = diasSelecionados.filter(d => d !== id);
+        elemento.classList.remove("selecionado");
+    } else {
+        diasSelecionados.push(id);
+        elemento.classList.add("selecionado");
+    }
+}
+
+function confirmarDias() {
+    if (diasSelecionados.length === 0) {
+        alert("Selecione pelo menos 1 dia!");
+        return;
+    }
+
+    const url = "{% url 'confirmar_treino' %}?musculos={{ musculos }}&dias=" + diasSelecionados.join(",");
+    window.location.href = url;
+}
+</script>
+
+{% endblock %}
+

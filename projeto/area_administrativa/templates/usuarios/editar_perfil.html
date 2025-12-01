@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'title' %}Editar Perfil{% endblock %}
+
+{% block 'body' %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-3">Editar Perfil</h2>
+
+    <div class="card shadow-sm p-4 border-0 rounded-4">
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Nome</label>
+                    <input type="text" name="first_name" class="form-control"
+                           value="{{ usuario.first_name }}">
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Sobrenome</label>
+                    <input type="text" name="last_name" class="form-control"
+                           value="{{ usuario.last_name }}">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">E-mail</label>
+                <input type="email" name="email" class="form-control"
+                       value="{{ usuario.email }}">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Bio</label>
+                <textarea name="bio" rows="3" class="form-control">{{ usuario.bio }}</textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Foto de Perfil</label>
+                <input type="file" class="form-control" name="avatar">
+            </div>
+
+            <div class="text-center mt-4">
+                <button class="btn btn-success px-5">Salvar</button>
+                <a href="{% url 'painel_dashboard' %}" class="btn btn-secondary ms-3 px-4">Cancelar</a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

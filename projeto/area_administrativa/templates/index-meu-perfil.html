@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Painel do Usuário{% endblock %}
+
+{% block 'body' %}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">Painel do Usuário</h1>
+        <p class="text-muted">Gerencie suas informações e seus treinos</p>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <!-- CARD DO PERFIL -->
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+
+                <div class="text-center">
+                    <img class="rounded-circle mb-3 shadow"
+                         style="width:160px; height:160px; object-fit:cover;"
+                         src="{% if usuario.avatar %}{{ usuario.avatar.url }}{% else %}{% static 'img/fotosem.avif' %}{% endif %}"
+                         alt="Foto do usuário">
+                </div>
+
+                <h3 class="text-center">{{ usuario.first_name }} {{ usuario.last_name }}</h3>
+                <p class="text-center text-muted">@{{ usuario.username }}</p>
+
+                <hr>
+
+                <h5>Informações</h5>
+                <p><strong>Email:</strong> {{ usuario.email }}</p>
+
+                {% if usuario.bio %}
+                    <p><strong>Bio:</strong> {{ usuario.bio }}</p>
+                {% else %}
+                    <p class="text-muted"><i>Nenhuma bio cadastrada.</i></p>
+                {% endif %}
+
+                <div class="d-flex justify-content-between mt-4">
+
+                    <a href="{% url 'meus_treinos' %}" class="btn btn-primary px-4">
+                        Meus Treinos
+                    </a>
+
+                    <a href="{% url 'editar_perfil' %}" class="btn btn-outline-info px-4">
+                        Editar Perfil
+                    </a>
+
+                    <a href="{% url 'trocar_senha' %}" class="btn btn-outline-danger px-4">
+                        Trocar a Senha
+                    </a>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

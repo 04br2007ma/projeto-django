@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load extras %}
+
+
+{% block 'title' %}Confirmar treino da semana{% endblock %}
+
+{% block 'head' %}
+
+<!-- SortableJS CDN (precisa ser carregado antes do seu código que o usa) -->
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+<style>
+.card-musculo-mini img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+.treino-dia {
+    min-height: 120px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.muscle-item {
+    cursor: grab;
+}
+</style>
+{% endblock %}
+
+{% block 'body' %}
+<h1 class="text-center mt-3">Confirmar Treino</h1>
+
+<form method="POST" id="formTreino">
+    {% csrf_token %}
+
+    <input type="hidden" name="selecao" value="{{ selecao }}">
+    <input type="hidden" name="treino_json" id="treino_json">
+
+    <div class="container mt-4">
+        <div class="row">
+
+            {% for d in dias %}
+                <div class="col-md-4 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white text-center">
+                            <strong>{{ d.nome }}</strong>
+                        </div>
+
+                        <ul class="list-group list-group-flush treino-dia"
+                            id="dia_{{ d.id }}"
+                            data-dia="{{ d.id }}"
+                            style="min-height:150px">
+
+                            {% for m_id in mapa|get_item:d.id %}
+                                {% for m in musculos %}
+                                    {% if m.id == m_id %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center muscle-item"
+                                            data-id="{{ m.id }}">
+                                            
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% if m.imagem %}{{ m.imagem.url }}{% else %}{% static 'img/default.png' %}{% endif %}"
+                                                    class="rounded me-2"
+                                                    style="width:40px; height:40px; object-fit:cover;">
+                                                {{ m.nome }}
+                                            </div>
+
+                                            <button type="button" class="btn btn-sm btn-danger btn-remover">
+                                                <i class="bi bi-x-lg"></i>
+                                            </button>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-success btn-lg px-5">Salvar Treino</button>
+        </div>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'criar_treino_semana' %}" class="btn btn-secondary">Voltar</a>
+        </div>
+
+    </div>
+
+</form>
+
+<script>
+// ===========================
+// REMOVER MÚSCULO
+// ===========================
+document.querySelectorAll('.btn-remover').forEach(btn => {
+    btn.addEventListener('click', function () {
+        this.closest('li').remove();
+    });
+});
+
+// ===========================
+// DRAG & DROP (TRELLO STYLE)
+// ===========================
+document.querySelectorAll('.treino-dia').forEach(lista => {
+    new Sortable(lista, {
+        group: 'treinos',
+        animation: 150,
+        ghostClass: 'bg-light'
+    });
+});
+
+// ===========================
+// MONTA JSON PARA O POST
+// ===========================
+document.getElementById("formTreino").addEventListener("submit", function (e) {
+
+    let resultado = {};
+
+    document.querySelectorAll(".treino-dia").forEach(lista => {
+        const dia_id = lista.dataset.dia;
+        const muscs = [];
+
+        lista.querySelectorAll(".muscle-item").forEach(item => {
+            muscs.push(parseInt(item.dataset.id));
+        });
+
+        resultado[dia_id] = muscs;
+    });
+
+    document.getElementById("treino_json").value = JSON.stringify(resultado);
+});
+</script>
+
+{% endblock %}

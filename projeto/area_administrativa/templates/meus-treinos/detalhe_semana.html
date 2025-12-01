@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Treino da Semana{% endblock %}
+
+{% block 'body' %}
+
+<div class="container mt-4">
+
+    <h2 class="text-center mb-4">
+        Semana {{ semana.inicio }} → {{ semana.fim }}
+    </h2>
+
+    <div class="text-center mb-4">
+        <span class="badge bg-primary fs-5 px-4 py-2">
+            Peso registrado: {{ semana.peso|default:"—" }}
+        </span>
+    </div>
+
+    <div class="row">
+        {% for treino in treinos %}
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-dark text-white text-center">
+                    <strong>{{ treino.dia.nome }}</strong>
+                </div>
+
+                <ul class="list-group list-group-flush">
+
+                    {% for m in treino.musculos.all %}
+                    <li class="list-group-item d-flex align-items-center">
+                        <img src="{% if m.imagem %}{{ m.imagem.url }}{% else %}{% static 'img/default.png' %}{% endif %}"
+                             class="rounded me-3"
+                             style="width: 55px; height: 55px; object-fit: cover;">
+
+                        <span class="fs-5">{{ m.nome }}</span>
+                    </li>
+                    {% empty %}
+                    <li class="list-group-item text-muted">
+                        Nenhum músculo definido para este dia
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    {% if semana.inicio > today %}
+        <div class="text-center mt-4">
+            <a class="btn btn-warning btn-lg" href="{% url 'editar_semana' semana.id %}">
+                Editar Semana
+            </a>
+        </div>
+    {% endif %}
+
+    <div class="text-center mt-3">
+            <a href="{% url 'criar_treino_semana' %}" class="btn btn-secondary">Voltar</a>
+    </div>    
+</div>
+
+{% endblock %}

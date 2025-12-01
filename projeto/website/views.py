@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
-from .models import TreinoSemana
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseBadRequest
+from datetime import date, timedelta
 
-# from .models import Pessoa
+hoje = date.today()
+ano, semana, dia_da_semana = hoje.isocalendar()
+
 
 # Create your views here.
 def home(request):
@@ -29,44 +32,3 @@ def cargas(request):
 def meu_perfil(request):
     return render(request, 'meu_perfil.html')
 
-@login_required
-def meu_perfil(request):
-    treino = TreinoSemana.objects.filter(user=request.user)
-    return render(request, "perfil.html", {"treino": treino})
-
-
-def escolher_dias(request):
-    musculos = request.GET.get("musculos", "").split(",")
-
-    dias_semana = ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"]
-
-    return render(request, "escolher_dias.html", {
-        "musculos": musculos,
-        "dias": dias_semana
-    })
-
-
-
-@login_required
-def montar_treino(request):
-    if request.method == "POST":
-        treino = TreinoSemana.objects.filter(user=request.user).delete()  # limpa treino antigo
-        
-        dia_valor = request.get.POST("")
-        for key, value in request.POST.items():
-            if key.startswith("dia_"):
-                musculo = key.replace("dia_", "")
-                TreinoSemana.objects.create(
-                    user=request.user,
-                    dia=value,
-                    musculos=musculo
-                )
-
-        return redirect("meu_perfil")  # redireciona ao perfil
-
-    return redirect("inicio")
-
-
-# def lista_pessoas(request):
-#     pessoas = Pessoa.objects.all().order_by('nome')
-#     return render(request, 'pessoas.html', {'pessoas': pessoas})

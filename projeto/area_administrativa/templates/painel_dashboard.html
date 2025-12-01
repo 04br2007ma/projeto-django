@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'title' %}Painel do Usuário{% endblock %}
+{% block 'head' %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock%}
+{% block 'body' %}
+
+<div class="container">
+    <h1 class="mb-3">Bem-vindo, {{ usuario.first_name }}</h1>
+
+    <!-- USER CARD -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-body d-flex align-items-center">
+            <img src="{% if usuario.avatar %}{{ usuario.avatar.url }}{% else %}{% static 'img/fotosem.avif' %}{% endif %}" class="rounded me-3" style="width:120px;height:120px;object-fit:cover;">
+            <div>
+                <p class="mb-1"><strong>Usuário:</strong> {{ usuario.username }}</p>
+                <p class="mb-1"><strong>Email:</strong> {{ usuario.email }}</p>
+                <p class="mb-1"><strong>Bio:</strong> {{ usuario.bio }}</p>
+                <a href="{% url 'editar_perfil' %}" class="btn btn-primary btn-sm mt-2">Editar Perfil</a>
+                <a href="{% url 'trocar_senha' %}" class="btn btn-warning btn-sm mt-2">Alterar Senha</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TREINOS RECENTES -->
+    <h3>Treinos Recentes</h3>
+    <div class="row">
+        {% for s in semanas_recentes %}
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Semana {{ s.inicio }} → {{ s.fim }}</h5>
+                    <a href="{% url 'detalhe_semana' s.id %}" class="btn btn-outline-primary btn-sm">Ver detalhes</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- CHART -->
+    <h3 class="mt-5">Resumo de Frequência</h3>
+    <canvas id="treinoChart"></canvas>
+
+</div>
+
+<script>
+const ctx = document.getElementById('treinoChart');
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{ graf_labels|safe }},
+        datasets: [{
+            label: 'Treinos por Semana',
+            data: {{ graf_dados|safe }},
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+</script>
+{% endblock %}
